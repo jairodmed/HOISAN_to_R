@@ -1,14 +1,19 @@
 HOISAN_to_R <- function(Dataset){
+library("foreign")
+library("ggplot2")
+library("ggrepel")
 rbPal <- colorRampPalette(c('blue',"purple",'red'))
 polar <- structure(list(degree = c(Dataset$Angulo), value = c(Dataset$Radio), Categoría=Dataset$Categoría), .Names = c("degree","value", "Categoría"), class = "data.frame", row.names = attr(Dataset, "row.names"))
 polar$Col <- rbPal(3)[as.numeric(cut(Dataset$Radio, breaks = c(0,1.96,2.58,Inf),right = FALSE))]
+categ=subset(polar, value!=0)
 ybreaks = pretty(x = polar$value, n = 3)
 p <- ggplot(polar, aes(x=degree, y=value,color = polar$Col)) +
   scale_x_continuous(breaks = seq(45, 360, 45), limits = c(0, 360),expand = c(0, 0)) +
   scale_y_continuous(breaks = ybreaks, limits = c(0,max(ybreaks))) +
   coord_polar(theta = "x", start = 1.5 * pi, direction = -1) +
   geom_segment(aes(y=0, xend=degree, yend=value), arrow=arrow(length=unit(0.5,"cm")),colour=polar$Col,size=1)+
-  geom_text_repel(data=subset(polar, value!=0),aes(label = data$Categoría),vjust = -0.3,size = (data$value)+10,colour=data$Col) +          geom_text(data = data.frame(x = 133, y = ybreaks, label = ybreaks),aes(x = x, y = y, label = label),inherit.aes = F,size = 4)  +
+  geom_text_repel(aes(label = categ$Categoría),vjust = -0.3,size = (categ$value+10),colour=categ$Col) +
+  geom_text(data = data.frame(x = 133, y = ybreaks, label = ybreaks),aes(x = x, y = y, label = label),inherit.aes = F,size = 4)  +
   geom_text(x = 45, y = (max(Dataset$Radio))*1.5, label = "I", color="black",size = 8) +
   geom_text(x = -45, y = (max(Dataset$Radio))*1.5, label = "IV", color="black",size = 8)+
   geom_text(x = -45, y = (max(Dataset$Radio))*-1.5, label = "II", color="black",size = 8)+
@@ -16,12 +21,11 @@ p <- ggplot(polar, aes(x=degree, y=value,color = polar$Col)) +
   geom_text(x = -20,y = -1.96, label = "1.96", color="purple",size = 4,hjust=-0.1) +
   geom_text(x = -20, y = -2.58, label = "2.58", color="red",size = 4,hjust=1)+
   theme_bw()+
-  theme(panel.grid.major = element_line(colour = "black",size = 0.2, linetype = 1))+
   geom_line(aes(y=1.96, xend=2, yend=4), colour="purple",size=0.3,linetype = 2)+
   geom_line(aes(y=2.58, xend=3, yend=3), colour="red",size=0.3,linetype = 2)+	
   geom_hline(yintercept = ybreaks, colour = "black", size = 0.1,linetype = 2) +
   geom_hline(yintercept = (max(ybreaks)), colour = "black", size = 0.2,linetype = 1) +
   geom_vline(xintercept = seq(0, 360, by = 45), colour = "black", size = 0.2) +
-  theme(panel.border = element_blank(),legend.position=c(0.85,0.25),axis.ticks = element_blank(),axis.text.y = element_blank(),axis.text.x = element_text(size=14),panel.grid  = element_blank())
+  theme(panel.border = element_blank(),legend.position=c(0.85,0.25),axis.ticks = element_blank(),axis.text.y = element_blank(),axis.text.x = element_text(size=14),panel.grid  = element_blank(),axis.title.x=element_blank(),axis.title.y=element_blank())
 return(p)
 }
