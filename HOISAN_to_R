@@ -6,7 +6,7 @@ rbPal <- colorRampPalette(c('blue',"purple",'red'))
 polar <- structure(list(degree = c(Dataset$Angulo), value = c(Dataset$Radio), Categoría=Dataset$Categoría), .Names = c("degree","value", "Categoría"), class = "data.frame", row.names = attr(Dataset, "row.names"))
 polar$Col <- rbPal(3)[as.numeric(cut(Dataset$Radio, breaks = c(0,1.96,2.58,Inf),right = FALSE))]
 categ=subset(polar, value!=0)
-ybreaks = pretty(x = polar$value, n = 3)
+ybreaks = pretty(x = polar$value, n = nrow(polar))
 p <- ggplot(polar, aes(x=degree, y=value,color = polar$Col)) +
   scale_x_continuous(breaks = seq(45, 360, 45), limits = c(0, 360),expand = c(0, 0)) +
   scale_y_continuous(breaks = ybreaks, limits = c(0,max(ybreaks))) +
