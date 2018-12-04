@@ -1,14 +1,14 @@
-HOISAN_to_R <- function(Dataset,pkg = "ggplot2"){
+HOISAN_to_R <- function(Dataset){
 rbPal <- colorRampPalette(c('blue',"purple",'red'))
-Dataset$Col <- rbPal(3)[as.numeric(cut(Dataset$Radio, breaks = c(0,1.96,2.58,Inf),right = FALSE))]
-polar <- structure(list(degree = c(Dataset$Angulo), value = c(Dataset$Radio)), .Names = c("degree","value"), class = "data.frame", row.names = attr(Dataset, "row.names"))
+polar <- structure(list(degree = c(Dataset$Angulo), value = c(Dataset$Radio), Categoría = as.factor(Dataset$Categoría), .Names = c("degree","value", "Categioría"), class = "data.frame", row.names = attr(Dataset, "row.names"))
 ybreaks = pretty(x = polar$value, n = 3)
+polar$Col <- rbPal(3)[as.numeric(cut(Dataset$Radio, breaks = c(0,1.96,2.58,Inf),right = FALSE))]
 p <- ggplot(polar, aes(x=degree, y=value,color = Dataset$Col)) +
   scale_x_continuous(breaks = seq(45, 360, 45), limits = c(0, 360),expand = c(0, 0)) +
   scale_y_continuous(breaks = ybreaks, limits = c(0,max(ybreaks))) +
   coord_polar(theta = "x", start = 1.5 * pi, direction = -1) +
   geom_segment(aes(y=0, xend=degree, yend=value), arrow=arrow(length=unit(0.5,"cm")),colour=Dataset$Col,size=1)+
-  geom_text(aes(label = Dataset$Cat),vjust = -1,size = 12,colour=Dataset$Col) +
+  geom_text(aes(label = Dataset$Cat),vjust = -1,size = 12,colour=polar$Col) +
   geom_text(data = data.frame(x = 133, y = ybreaks, label = ybreaks),aes(x = x, y = y, label = label),inherit.aes = F,size = 4)  +
   geom_text(x = 45, y = (max(Dataset$Radio))*1.5, label = "I", color="black",size = 8) +
   geom_text(x = -45, y = (max(Dataset$Radio))*1.5, label = "IV", color="black",size = 8)+
