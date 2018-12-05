@@ -21,8 +21,8 @@ p <- ggplot(polar, aes(x=degree, y=value,color = polar$Col)) +
   geom_text(x = -20,y = -1.96, label = "1.96", color="purple",size = 4,hjust=-0.1) +
   geom_text(x = -20, y = -2.58, label = "2.58", color="red",size = 4,hjust=1)+
   theme_bw()+
-  geom_line(aes(y=1.96, xend=2, yend=4), colour="purple",size=0.3,linetype = 2)+
-  geom_line(aes(y=2.58, xend=3, yend=3), colour="red",size=0.3,linetype = 2)+	
+  geom_line(aes(y=1.96), colour="purple",size=0.3,linetype = 2)+
+  geom_line(aes(y=2.58), colour="red",size=0.3,linetype = 2)+	
   geom_hline(yintercept = ybreaks, colour = "black", size = 0.1,linetype = 2) +
   geom_hline(yintercept = (max(ybreaks)), colour = "black", size = 0.2,linetype = 1) +
   geom_vline(xintercept = seq(0, 360, by = 45), colour = "black", size = 0.2) +
