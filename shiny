@@ -1,0 +1,97 @@
+from_HOISAN_to_R_shiny <- function(){
+  library(shiny)
+  library(ggplot2)
+  library(ggpubr)
+  library(ggrepel)
+  library(grid)
+  library(foreign)
+  library(svglite)
+  library(shinyjs)
+  library(shinydashboard)
+  
+  library(shiny)
+  
+  # Define UI for application that draws a polar coordinates analysis
+  ui <- shinyUI(fluidPage(
+    
+    # Application title
+    titlePanel("Polar Coordinates Analysis"),
+    
+    # # Sidebar with a list input for select input dataset from HOISAN, focal behavior, scale, font, font size and vector width
+    sidebarLayout(
+      sidebarPanel(
+        fileInput('Dataset', 'Select HOISAN Polar Coordinates Analysis results file csv',
+                  accept=c("xls",'dltext/csv','text/comma-separated-values,text/plain','.csv')),
+        tags$hr(),
+        radioButtons("sep", "Separator", choices = c(Comma = ",", Semicolon = ";",Tab = "\t"), selected = ",",inline=T),
+        radioButtons("quote", "Quote", choices = c(None = "", "Double Quote" = '"',"Single Quote" = "'"),selected = '"',inline=T),
+        tags$hr(),
+        selectInput("Category","Focal Behavior:",""),
+        sliderInput("Scale","Scale",min=0, max=5,value=c(0,5),step=0.01),
+        selectInput("font.family","Choose Font:",choices=c("Helvetica","Times New Roman", "Arial", "Futura")),
+        numericInput("font.size","Font size:",4, 32,c(4,32)),
+        numericInput("vector.width","Width:",0.5, 4,c(1,2))
+      ),
+      mainPanel(plotOutput("plot"))
+    ))
+  )
+  
+  # Define server logic required to draw a polar coordinates graph
+  server <- (function(input, output,session) {
+    
+    observe({
+      Dataset = input$Dataset
+      if (is.null(Dataset)) {
+        return(NULL)
+      } else {
+        Dataset = read.table(Dataset$datapath,header=TRUE, sep=",",na.strings="NA", dec=".", strip.white=TRUE)
+        cat <- Dataset$Categoría
+        updateSelectInput(session,"Category","Focal Behavior:", choices=unique(cat),selected= tail(cat,1))
+        escala <- Dataset$Radio
+        updateSliderInput(session, "Scale", min = 0, max=round(max(escala))+1)
+      } 
+      
+      
+      polar <- structure(list(degree = c(Dataset$Ángulo), value = c(Dataset$Radio),cat=as.factor(Dataset$Categoría)), .Names = c("degree","value", "Categoría"), class = "data.frame", row.names = attr(Dataset, "row.names"))
+      rbPal <- colorRampPalette(c('blue',"purple",'red'))
+      ybreaks = pretty(x = polar$value, n = 3)
+      rbPal <- colorRampPalette(c('blue',"purple",'red'))
+      polar$Col <- rbPal(3)[as.numeric(cut(Dataset$Radio, breaks = c(0,1.96,2.58,Inf),right = FALSE))]
+      data_sub=subset(polar, value!=0)
+      
+      
+      output$plot <- renderPlot({
+        
+        ggplot(polar, aes(x=degree, y=value,color = polar$Col))+
+          scale_x_continuous(breaks = seq(45, 360, 45), limits = c(0, 360),expand = c(0, 0))+
+          scale_y_continuous(breaks = ybreaks, limits = c(input$Scale[1],input$Scale[2])) +
+          coord_polar(theta = "x", start = 1.5 * pi, direction = -1) +
+          geom_segment(aes(y=0, xend=degree, yend=value), arrow=arrow(length=unit(0.5,"cm")),colour=polar$Col,size=input$vector.width)+
+          geom_text_repel(data_sub=subset(polar, value!=0),aes(label = Dataset$Categoría),vjust = ifelse(data_sub$degree >= 180, 1, -1), family=input$font.family,point.padding = NA,size = input$font.size,colour=data_sub$Col) +
+          geom_text(data = data.frame(x = 133, y = ybreaks, label = ybreaks),aes(x = x, y = y, label = label),inherit.aes = F,size = 4)+
+          geom_text(x = 45, y = input$Scale[2]*1.25, label = "I", color="black",size = 8) +
+          geom_text(x = -45, y = input$Scale[2]*1.25, label = "IV", color="black",size = 8)+
+          geom_text(x = -45, y = input$Scale[2]*-1.25, label = "II", color="black",size = 8)+
+          geom_text(x = 45, y = input$Scale[2]*-1.25, label = "III", color="black",size = 8) +
+          geom_text(x = -20,y = -1.96, label = "1.96", color="purple",size = 4,hjust=-0.1) +
+          geom_text(x = -20, y = -2.58, label = "2.58", color="red",size = 4,hjust=1)+
+          scale_color_manual(polar$Col,labels = c('p < .005', 'p < .001'))+
+          geom_hline(aes(yintercept=1.96, xend=2, yend=4), colour="purple",size=0.1,linetype = 2)+
+          geom_hline(aes(yintercept=2.58, xend=3, yend=3), colour="red",size=0.1,linetype = 2)+	
+          geom_hline(yintercept = ybreaks, colour = "black", size = 0.1,linetype = 2) +
+          geom_hline(yintercept = input$Scale[2], colour = "black", size = 0.2,linetype = 1) +
+          geom_vline(xintercept = seq(0, 360, by = 45), colour = "black", size = 0.1) +
+          theme_bw()+
+          theme(panel.grid.major = element_line(colour = "black",size = 0.2, linetype = 1))+
+          theme(panel.border = element_blank(),legend.position=c(0.85,0.25),axis.ticks = element_blank(),axis.text.y = element_blank(),axis.text.x = element_text(size=14),panel.grid  = element_blank())
+        
+        
+      }
+      ,height = 700, width = 700)
+    })
+    
+  })
+  
+  # Run the application 
+  shinyApp(ui = ui, server = server)
+}
