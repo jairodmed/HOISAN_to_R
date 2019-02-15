@@ -13,3 +13,14 @@ To cite HOISAN_to_R in publications, please use:
 
 Rodríguez-Medina, J., Arias, V., Arias, B., Mendo, A., & Anguera, M. T. (2019). From HOISAN to R Per un Pugno di Code Lines: A Tutorial Paper. 
 
+# Community
+
+Official website: https://jairodmed.shinyapps.io/HOISAN_to_R/
+
+CRAN page: 
+
+GitHub repository: https://github.com/jairodmed/HOISAN_to_R
+
+Tutorial: https://drive.google.com/open?id=0B48gIxLQzSnBajloYWtYQWpnQUdzMFhheUNtOENmMjFDX2xJ
+
+Slides: https://drive.google.com/open?id=0B48gIxLQzSnBajloYWtYQWpnQUdzMFhheUNtOENmMjFDX2xJ
