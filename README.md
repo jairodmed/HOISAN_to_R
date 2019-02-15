@@ -11,7 +11,7 @@ If you use this package for your research, we would appreciate a citation.
 
 To cite HOISAN_to_R in publications, please use:
 
-Rodríguez-Medina, J., Arias, V., Arias, B., Mendo, A., & Anguera, M. T. (2019). From HOISAN to R Per un Pugno di Code Lines: A Tutorial Paper. 
+Rodríguez-Medina, J., Arias, V., Arias, B., Mendo, A., & Anguera, M. T. (2019). From HOISAN to R Per un Pugno di Code Lines: A Tutorial Paper on Polar Coordinates Analysis. 
 
 # Community
 
@@ -29,3 +29,10 @@ Slides: https://drive.google.com/open?id=0B48gIxLQzSnBajloYWtYQWpnQUdzMFhheUNtOE
 
 It can be installed as a stand alone app from:
 https://drive.google.com/open?id=11SoyDnAendLl1_cCvRcNfbpQ0N2EL6ly
+
+# Data loading and converting
+
+# Polar Coordinates Analysis
+
+# Main Authors' references
+
