@@ -40,3 +40,9 @@ https://drive.google.com/open?id=11SoyDnAendLl1_cCvRcNfbpQ0N2EL6ly
 
 # Main Authors' references
 
+Anguera, M. T. (1997). From prospective patterns in behavior to joint analysis with a retrospective perspective. Colloque sur invitation “Méthodologie d’analyse des interactions sociales”. Paris: Uni- versité de la Sorbonne.
+
+Anguera, M. T. (2003). Observational methods (General). In R. Fernán- dez-Ballesteros (Ed.), Encyclopedia of psychological assessment (Vol. 2, pp. 632–637). London: Sage.
+
+Hernández-Mendo, A., López-López, J., Castellano, J., Morales- Sánchez, V., & Pastrana, J. L. (2012). Hoisan 1.2: Programa informático para uso en metodología observacional [Hoisan 1.2: Program for use in observacional methodology]. Cuadernos de Psicología del Deporte, 12(1), 55–78. https ://doi.org/10.4321/ S1578 -84232 01200 01000 06.
+
