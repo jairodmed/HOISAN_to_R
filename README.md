@@ -5,7 +5,8 @@ HOISAN Polar Coordinates Analysis output to R
 
 HOISAN_to_R package provides a set of tools for graphical analysis in observational methods
 
-Data importing and conversion from HOISAN to R format;
+Data importing and conversion from HOISAN to R format
+
 Building and plotting Polar Coordinates Analysis
 
 # Suggested citation
