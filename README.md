@@ -32,7 +32,7 @@ Slides: https://drive.google.com/open?id=0B48gIxLQzSnBajloYWtYQWpnQUdzMFhheUNtOE
 # Installation
 
 It can be installed as a stand alone app from:
-https://drive.google.com/file/d/17dgjfeBXTdW9aco9NnqAAGbCOGRI19KY/view?usp=sharing
+https://drive.google.com/drive/folders/1Teehi2nla-kiI1b0hysFCi4KGbgjQ-1o?usp=sharing
 
 # Data loading and converting
 
