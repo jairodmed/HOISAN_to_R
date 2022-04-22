@@ -21,7 +21,7 @@ Rodríguez-Medina, J., Arias, V., Arias, B., Hernández-Mendo, A., & Anguera, M.
 
 Official website: https://jairodmed.shinyapps.io/HOISAN_to_R/
 
-                  https://jairodmed.shinyapps.io/HOISAN_to_R_2021/
+Official website: https://jairodmed.shinyapps.io/HOISAN_to_R_2021/
 
 CRAN page: 
 
