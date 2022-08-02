@@ -23,6 +23,9 @@ Official website: https://jairodmed.shinyapps.io/HOISAN_to_R/
 
 Official website: https://jairodmed.shinyapps.io/HOISAN_to_R_2021/
 
+Official website: https://jairodmed.shinyapps.io/HOISAN_to_R_2022/
+
+
 CRAN page: 
 
 GitHub repository: https://github.com/jairodmed/HOISAN_to_R
