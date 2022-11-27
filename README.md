@@ -15,7 +15,7 @@ If you use this package for your research, we would appreciate a citation.
 
 To cite HOISAN_to_R in publications, please use:
 
-Rodríguez-Medina, J., Hernández-Mendo, A., & Anguera, M. T. (2021, Junio 14-18). De HOISAN a R: Una aplicación web interactiva para la representación gráfica de coordenadas polares. En M. T. Anguera, <i>Aplicando la Observación Sistemática a la Investigación Educativa</i> [Simposium]. X Congreso Internacional de Psicología y Educación CIPE 2021, Córdoba, España.
+Rodríguez-Medina, J., Hernández-Mendo, A., & Anguera, M. T. (2021, Junio 14-18). De HOISAN a R: Una aplicación web interactiva para la representación gráfica de coordenadas polares. En M. T. Anguera, <i>Aplicando la observación sistemática a la investigación educativa</i> [Simposium]. X Congreso Internacional de Psicología y Educación CIPE 2021, Córdoba, España.
 
 Rodríguez-Medina, J., Arias, V., Arias, B., Hernández-Mendo, A., and Anguera, M. T. (2019). Polar Coordinate Analysis, from HOISAN to R: A Tutorial Paper. Available online at: https://jairodmed.shinyapps.io/HOISAN_to_R/
 
