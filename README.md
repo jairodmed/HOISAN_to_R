@@ -29,6 +29,8 @@ Official website: https://jairodmed.shinyapps.io/HOISAN_to_R_2022/
 
 Official website: https://jairodmed.shinyapps.io/ObseRtools_2023/
 
+Official website: https://jairodmed.shinyapps.io/ObseRtools_2023_beta/
+
 
 CRAN page: 
 
